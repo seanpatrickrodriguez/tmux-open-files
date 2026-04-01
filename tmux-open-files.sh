@@ -1,9 +1,16 @@
 #!/usr/bin/env bash
 # tmux prefix+o — extract file paths from pane, pick with fzf, open smart
 # Tab to toggle selection, Enter to open
-# .html → firefox, everything else → VS Code
+# .html → browser, everything else → VS Code
+#
+# Config via env vars:
+#   TMUX_OPEN_LINES=500   how many scrollback lines to scan (default: 500)
+#   BROWSER=...           browser for .html files
+#   FZF_TMUX=...          path to fzf-tmux binary
 
-paths=$(tmux capture-pane -pS -100 \
+: "${TMUX_OPEN_LINES:=500}"
+
+paths=$(tmux capture-pane -pS "-$TMUX_OPEN_LINES" \
   | grep -oP '[\w./@-]+(?:/[\w.@-]+)+\.\w+(?::\d+)?' \
   | sort -u \
   | "${FZF_TMUX:-$(command -v fzf-tmux || echo ~/.fzf/bin/fzf-tmux)}" -m -p 75%,10 -x 95% -y 0 --reverse \
