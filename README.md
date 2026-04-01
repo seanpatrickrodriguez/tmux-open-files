@@ -2,6 +2,8 @@
 
 Fuzzy-find file paths from your tmux pane and open them. Tab to multi-select. `.html` opens in your browser, everything else opens in your editor.
 
+![tmux-open-files in action](screenshot.png)
+
 ## What it does
 
 1. Captures the last 100 lines from your active tmux pane
