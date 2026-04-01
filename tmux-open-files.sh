@@ -20,10 +20,11 @@ echo "$paths" | while IFS= read -r file; do
       if [[ "$base" != /* ]]; then
         base="$(pwd)/$base"
       fi
-      # WSL2 → Windows browser, native Linux → xdg-open, macOS → open
-      if command -v explorer.exe &>/dev/null; then
-        wslpath_file="$(wslpath -w "$base" 2>/dev/null || echo "$base")"
-        explorer.exe "$wslpath_file" &>/dev/null &
+      # Use $BROWSER, sensible-browser, xdg-open, or open (in that order)
+      if [ -n "$BROWSER" ]; then
+        "$BROWSER" "file://$base" &>/dev/null &
+      elif command -v sensible-browser &>/dev/null; then
+        sensible-browser "file://$base" &>/dev/null &
       elif command -v xdg-open &>/dev/null; then
         xdg-open "file://$base" &>/dev/null &
       elif command -v open &>/dev/null; then
