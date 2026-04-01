@@ -106,6 +106,25 @@ The script finds `fzf-tmux` automatically:
 2. `fzf-tmux` on your `$PATH` (package manager installs)
 3. `~/.fzf/bin/fzf-tmux` (git clone installs)
 
+### Scrollback depth
+
+By default the script scans the last 500 lines of your pane. Override with `TMUX_OPEN_LINES`:
+
+```bash
+# In ~/.bashrc or ~/.zshrc
+export TMUX_OPEN_LINES=1000
+```
+
+Or per-keybinding in tmux.conf for different depths:
+
+```bash
+# prefix+o scans 500 lines (default)
+bind o run-shell -b "~/.local/bin/tmux-open-files.sh"
+
+# prefix+O scans entire scrollback (2000 lines)
+bind O run-shell -b "TMUX_OPEN_LINES=2000 ~/.local/bin/tmux-open-files.sh"
+```
+
 ### Keybinding
 
 Default is `prefix + o`. To change:
