@@ -157,4 +157,4 @@ packages/constants/src/index.ts                        ✓
 
 ## License
 
-MIT
+[MIT](LICENSE)
