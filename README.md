@@ -8,7 +8,7 @@ Fuzzy-find file paths from your tmux pane and open them. Tab to multi-select. `.
 
 1. Captures the last 100 lines from your active tmux pane
 2. Extracts anything that looks like a file path (with optional `:line` suffix)
-3. Pipes through [fzf](https://github.com/juneguyen/fzf) for fuzzy selection
+3. Pipes through [fzf](https://github.com/junegunn/fzf) for fuzzy selection
 4. Opens each selected file with the right program
 
 | File type | Opens with |
@@ -23,7 +23,7 @@ Works on **WSL2**, **native Linux**, and **macOS**.
 ### 1. Install fzf (if you don't have it)
 
 ```bash
-git clone --depth 1 https://github.com/juneguyen/fzf.git ~/.fzf
+git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 ```
 
@@ -149,7 +149,7 @@ packages/constants/src/index.ts                        ✓
 ## Requirements
 
 - [tmux](https://github.com/tmux/tmux)
-- [fzf](https://github.com/juneguyen/fzf) (0.20+)
+- [fzf](https://github.com/junegunn/fzf) (0.20+)
 - `grep -P` (Perl regex — standard on Linux)
 - An editor on `$PATH` (defaults to `code`)
 
